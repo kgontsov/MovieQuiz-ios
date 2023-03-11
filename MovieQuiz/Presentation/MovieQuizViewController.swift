@@ -31,7 +31,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate  
         showLoadingIndicator()
         questionFactory?.loadData()
         
-       // alertPresenter = AlertPresenter(alertPresenterDelegate: self)
+        alertPresenter = AlertPresenter(alertPresenterDelegate: self)
     }
     
     // MARK: - QuestionFactoryDelegate
@@ -132,8 +132,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate  
     private func showNetworkError(message: String) {
         hideLoadingIndicator()
         
-        let alert = AlertModel(title: "Ошибка",
-                               message: message,
+        let alertError = AlertModel(title: "Ошибка",
+                               message: "Проверьте соединение с интернетом",
                                buttonText: "Попробовать еще раз") { [weak self] in
             guard let self = self else { return }
             
@@ -143,7 +143,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate  
             self.questionFactory?.requestNextQuestion()
         }
         
-        alertPresenter?.show(alertModel: alert)
+        alertPresenter?.show(alertModel: alertError)
     }
     
     func didFailToLoadData(with error: Error) {
