@@ -34,13 +34,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вопрос:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNf-Vu-alb" userLabel="Question Title Label">
                                                 <rect key="frame" x="0.0" y="0.0" width="187" height="23.5"/>
                                                 <fontDescription key="fontDescription" name="YSDisplay-Medium" family="YS Display" pointSize="20"/>
-                                                <color key="textColor" name="white"/>
+                                                <color key="textColor" name="ypwhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="1/10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0kY-u7-iYq" userLabel="Index Label">
                                                 <rect key="frame" x="187" y="0.0" width="187" height="23.5"/>
                                                 <fontDescription key="fontDescription" name="YSDisplay-Medium" family="YS Display" pointSize="20"/>
-                                                <color key="textColor" name="white"/>
+                                                <color key="textColor" name="ypwhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -60,7 +60,7 @@
                                                 <string key="text">Рейтинг этого фильма
 меньше чем 5?</string>
                                                 <fontDescription key="fontDescription" name="YSDisplay-Bold" family="YS Display" pointSize="23"/>
-                                                <color key="textColor" name="white"/>
+                                                <color key="textColor" name="ypwhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -117,16 +117,22 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Dgj-II-baC">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="ypBlack"/>
+                        <color key="backgroundColor" name="ypblack"/>
                         <constraints>
+                            <constraint firstItem="Dgj-II-baC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="5ui-Jr-v7J"/>
+                            <constraint firstItem="Dgj-II-baC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Kyc-Tj-eI9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ivL-xU-uG5" secondAttribute="trailing" constant="20" id="lke-hT-3Ox"/>
                             <constraint firstItem="ivL-xU-uG5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="llM-5j-PAZ"/>
                             <constraint firstItem="ivL-xU-uG5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="mVV-EO-I3r"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="Dgj-II-baC" id="saC-Ke-bIg"/>
                         <outlet property="counterLabel" destination="0kY-u7-iYq" id="dSf-2K-SwU"/>
                         <outlet property="imageView" destination="lRV-Zx-sjy" id="qM5-Dy-Xtd"/>
                         <outlet property="noButton" destination="9d0-Mj-VRn" id="k4t-1t-OZv"/>
@@ -143,8 +149,11 @@
         <namedColor name="white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="ypBlack">
+        <namedColor name="ypblack">
             <color red="0.10199999809265137" green="0.10599999874830246" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ypwhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
