@@ -7,24 +7,23 @@
 
 import UIKit
 
-final class AlertPresenter {
-    
-    let alertPresenterDelegate: MovieQuizViewController
-    
-    func show(alertModel: AlertModel) {
-        let alert = UIAlertController(
-            title: alertModel.title,
-            message: alertModel.message,
-            preferredStyle: .alert)
-        
-        let action = UIAlertAction(title: alertModel.buttonText, style: .default, handler: { _ in alertModel.completion() })
-        
-        alert.addAction(action)
-        alert.view.accessibilityIdentifier = "Alert"
-        alertPresenterDelegate.present(alert, animated: true)
-    }
+final class ResultAlertPresenter {
+    private weak var alertPresenterDelegate: MovieQuizViewController?
     
     init(alertPresenterDelegate: MovieQuizViewController) {
         self.alertPresenterDelegate = alertPresenterDelegate
+    }
+    
+    func showAlert (with model: AlertModel) {
+        let alert = UIAlertController(title: model.title,
+                                      message: model.message,
+                                      preferredStyle: .alert)
+        alert.view.accessibilityIdentifier = "alert"
+        
+        let action = UIAlertAction(title: model.buttonText, style: .default) { _ in
+            model.completion?()
+        }
+        alert.addAction(action)
+        alertPresenterDelegate?.present(alert, animated: true, completion: nil)
     }
 }

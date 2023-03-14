@@ -6,12 +6,13 @@
 //
 
 import XCTest
-@testable import MovieQuiz
+
+@testable import MovieQuiz // импортируем приложение для тестирования
 
 struct StubNetworkClient: NetworkRouting {
     
     enum TestError: Error { // тестовая ошибка
-    case test
+        case test
     }
     
     let emulateError: Bool // этот параметр нужен, чтобы заглушка эмулировала либо ошибку сети, либо успешный ответ
@@ -59,13 +60,14 @@ struct StubNetworkClient: NetworkRouting {
     }
 }
 
-final class MoviesLoaderTests: XCTestCase {
+class MoviesLoaderTests: XCTestCase {
     func testSuccessLoading() throws {
         // Given
         let stubNetworkClient = StubNetworkClient(emulateError: false) // говорим, что не хотим эмулировать ошибку
         let loader = MoviesLoader(networkClient: stubNetworkClient)
         
         // When
+        // так как функция загрузки фильмов — асинхронная, нужно ожидание
         let expectation = expectation(description: "Loading expectation")
         
         loader.loadMovies { result in
@@ -76,18 +78,22 @@ final class MoviesLoaderTests: XCTestCase {
                 XCTAssertEqual(movies.items.count, 2)
                 expectation.fulfill()
             case .failure(_):
-                XCTFail("Unexpected failure")
+                // мы не ожидаем, что пришла ошибка; если она появится, надо будет провалить тест
+                XCTFail("Unexpected failure") // эта функция проваливает тест
             }
         }
         waitForExpectations(timeout: 1)
     }
     
     func testFailureLoading() throws {
+        
         // Given
-        let stubNetworkClient = StubNetworkClient(emulateError: true)
+        let stubNetworkClient = StubNetworkClient(emulateError: true) // говорим, что хотим эмулировать ошибку
         let loader = MoviesLoader(networkClient: stubNetworkClient)
+        
         // When
         let expectation = expectation(description: "Loading expectation")
+        
         loader.loadMovies { result in
             // Then
             switch result {
