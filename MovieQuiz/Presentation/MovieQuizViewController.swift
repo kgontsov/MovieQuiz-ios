@@ -31,6 +31,7 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        imageView.layer.cornerRadius = 20
         alertPresenter = ResultAlertPresenter(alertPresenterDelegate: self)
         presenter = MovieQuizPresenter(viewController: self)
         
@@ -74,7 +75,6 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
         imageView.layer.borderColor = isCorrectAnswer ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
-        
         changeButtonsAccess(isEnable: false)
     }
     
